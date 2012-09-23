@@ -1,0 +1,14 @@
+{
+    "name": "node-eyefi"
+  , "version": "0.0.1"
+  , "private": false
+  , "dependencies": {
+      "express": "*"
+    , "ejs": "*"
+    , "xml2js": "*"
+    , "tar": "*"
+    , "formidable": "*"
+    , "devnull": "*"
+    , "bytes": "*"
+  }
+}

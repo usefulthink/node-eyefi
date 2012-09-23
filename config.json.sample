@@ -1,0 +1,8 @@
+{
+    "uploadPath" : "whereever/you/want",
+    "cards" : {
+        "<mac-address, without dashes>" : {
+            "uploadKey" : "<upload key from Settings.xml>"
+        }
+    }
+}
