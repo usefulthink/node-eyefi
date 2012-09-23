@@ -1,18 +1,9 @@
-try {
-    process.setuid("node");
-    process.setgid("node");
-} catch (err) { console.log("Setting uid/gid failed"); }
-
 var express = require('express'),
-    routes = require('./routes'),
-    formidable = require("formidable"),
-    qs = require('querystring'),
-    util = require('util'),
-    config = require("./lib/config");
+    routes = require('./routes');
 
 var app = module.exports = express.createServer();
 
-
+// main configuration
 app.configure(function () {
     app.register('xml', require('ejs'));
 
@@ -23,7 +14,7 @@ app.configure(function () {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
 
-    app.use(express.logger(require('./lib/express.logFormatter.js')));
+    app.use(express.logger(require('./lib/express.logFormatter')));
 
     app.use(require('./lib/express.soapParser'));
 
@@ -31,7 +22,7 @@ app.configure(function () {
     app.use(express.static(__dirname + '/public'));
 });
 
-// Routes
+// Routing
 app.post('/api/soap/eyefilm/v1', routes.soap.handleSoapRequest);
 app.post('/api/soap/eyefilm/v1/upload', routes.upload);
 
