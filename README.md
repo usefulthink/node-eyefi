@@ -48,8 +48,9 @@ Integration is possible, but currently not very feature-rich.
 It basically just works (or maybe doesn't) and emits an
 `imageReceived`-Event whenever the upload of an image is completed.
 
-By default, logging will be quite verbose and print to the console. This is
-something I'm working on.
+By default, logging will print error-messages to the console. This is
+something I'm working on. (If you want to customize logging, the only way
+for now is to create your own logger-instance (see standalone.js))
 
     var eyefi = require('eyefi');
     
