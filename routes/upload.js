@@ -3,8 +3,6 @@ var config = require('../lib/config'),
     fs = require('fs'),
     path = require('path');
 
-// TODO: we need to emit an event when the file upload is complete.
-//       Stick to the express-middleware conventions and make the router configurable.
 // TODO: logging with console.log needs to be replaced
 
 module.exports = function (req, res) {
@@ -18,13 +16,13 @@ module.exports = function (req, res) {
             res.end();
         })
         .on("entry", function (entry) {
-            console.log('tar entry: ' + entry.props.path);
-
             var outfile = path.join(uploadPath, entry.props.path);
             entry.pipe(fs.createWriteStream(outfile));
             entry.on("end", function () {
-                console.log('upload complete. file: ', outfile);
+                req.app.emit('imageReceived', { filename: outfile });
             });
         })
-        .on("end", function () { res.render('uploadSuccess'); });
+        .on("end", function () {
+            res.render('uploadSuccess');
+        });
 };
