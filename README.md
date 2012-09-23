@@ -9,9 +9,7 @@ Allows an Eye-Fi card to post images directly to your node.js-application.
     git clone git://github.com/usefulthink/node-eyefi.git
     cd node-eyefi && npm install .
 
-### (TBD) As a module
-
-this doesn't work by now, but writing it here will keep me focused.
+### As a module
 
     npm install eyefi
 
@@ -36,21 +34,26 @@ this doesn't work by now, but writing it here will keep me focused.
 
     # create a file named config.json (just copy the config.json.sample)
     cp config.json.sample config.json
-
+    
     # edit config.json and enter your cards mac-address and uploadKey
     
     # start the server
     node standalone.js
-    
+
 now take a photo to see if it's working.
 
-## (yet to be done) Integrate into your own project
+## Integrate into your own project
 
-doesn't work yet, but at least there's an idea.
+Integration is possible, but currently not very feature-rich.
+It basically just works (or maybe doesn't) and emits an
+`imageReceived`-Event whenever the upload of an image is completed.
+
+By default, logging will be quite verbose and print to the console. This is
+something I'm working on.
 
     var eyefi = require('eyefi');
-
-    var eyefiServer = eyefi.createServer({
+    
+    var eyefiServer = eyefi({
         uploadPath : '/where/uploaded/files/are/stored',
         cards : {
             '<macaddress>': {

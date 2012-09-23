@@ -12,7 +12,7 @@ config.logger = new Logger({
     //level: 8 // log-level (8=debug)
 });
 
-var eyefiServer = eyefi.createServer(config).start();
+var eyefiServer = eyefi(config).start();
 
 console.log("node-eyefi started and listening");
 
