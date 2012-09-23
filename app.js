@@ -1,5 +1,10 @@
-var config = require('./lib/config'),
-    eyefi = require('./lib/server');
+"use strict";
+
+var fs = require('fs'),
+    path = require('path'),
+    eyefi = require('./lib/server'),
+
+    config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json')));
 
 var eyefiServer = eyefi.createServer(config).start();
 

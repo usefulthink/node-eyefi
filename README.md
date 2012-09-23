@@ -47,6 +47,7 @@ now take a photo to see if it's working.
 doesn't work yet, but at least there's an idea.
 
     var eyefi = require('eyefi');
+
     var eyefiServer = eyefi.createServer({
         uploadPath : '/where/uploaded/files/are/stored',
         cards : {
@@ -56,8 +57,8 @@ doesn't work yet, but at least there's an idea.
         }
     }).start();
     
-    eyefiServer.on('fileReceived', function(fileData) {
-        // there it is…
+    eyefiServer.on('imageReceived', function(data) {
+        console.log('received an image: ' + data.filename);
     });
 
 
@@ -83,5 +84,6 @@ start here:
 Inspired by prior work of Sebastian Hoitz and Thomas Schaaf – their project
 (http://goo.gl/HOxO2) gave me some insights and was some kind of starting-point
 for me.
-Thanks to all the people who dissected the eye-fi cards and the protocols.
+
+Also, thanks to all the people who dissected the eye-fi cards and the protocols.
 
