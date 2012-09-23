@@ -63,7 +63,8 @@ doesn't work yet, but at least there's an idea.
 
 ## Doesn't work?
 
-Shit happens. File an issue or drop me a line, I'll see what I can do.
+Shit happens. [File an issue](https://github.com/usefulthink/node-eyefi/issues)
+or [drop me a line](https://github.com/usefulthink). I'll see what I can do.
 
 
 ## Dive deeper?
