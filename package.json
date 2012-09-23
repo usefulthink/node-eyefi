@@ -1,7 +1,7 @@
 {
     "name": "eyefi",
-    "version": "0.1.0",
-    "description": "integrate image-uploads from eye-fi cards (http://eye.fi) into your node-application",
+    "version": "0.1.1",
+    "description": "integrate image-uploads from eye-fi cards into your application",
     "main": "index.js",
     "repository": {
         "type": "git",
