@@ -47,14 +47,14 @@ now take a photo to see if it's working.
 doesn't work yet, but at least there's an idea.
 
     var eyefi = require('eyefi');
-    var eyefiServer = new eyefi.Server({
+    var eyefiServer = eyefi.createServer({
         uploadPath : '/where/uploaded/files/are/stored',
         cards : {
             '<macaddress>': {
                 uploadKey: '<uploadKey>'
             }
         }
-    });
+    }).start();
     
     eyefiServer.on('fileReceived', function(fileData) {
         // there it is…
