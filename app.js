@@ -16,6 +16,14 @@ app.configure(function () {
 
     app.use(express.logger(require('./lib/express.logFormatter')));
 
+    // seems like the cards do not always set the soapaction-header when uploading files.
+    app.use(function(req,res,next) {
+        if(req.url == '/api/soap/eyefilm/v1/upload') {
+            req.headers.soapaction = 'urn:UploadPhoto';
+        }
+        next();
+    });
+
     app.use(require('./lib/express.soapParser'));
 
     app.use(app.router);
