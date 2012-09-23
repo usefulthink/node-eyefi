@@ -34,11 +34,13 @@ this doesn't work by now, but writing it here will keep me focused.
 
 ## Running standalone
 
-    # create a file named config.json (just copy the config.json.sample) and enter your mac-address and uploadKey
+    # create a file named config.json (just copy the config.json.sample)
     cp config.json.sample config.json
+
+    # edit config.json and enter your cards mac-address and uploadKey
     
     # start the server
-    node app.js
+    node standalone.js
     
 now take a photo to see if it's working.
 
