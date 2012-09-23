@@ -19,6 +19,7 @@ function md5HexDigest(data) {
 }
 
 exports.handleSoapRequest = function (req, res) {
+    // implements the simple challenge/response authentication used by the eye-fi cards
     var renderStartSessionResponse = function (data) {
         var reqData = data["SOAP-ENV:Body"]["ns1:StartSession"],
             cardConfig = config.getCardConfig(reqData.macaddress);
@@ -46,6 +47,7 @@ exports.handleSoapRequest = function (req, res) {
     };
 
     var renderMarkLastPhotoInRollResponse = function (data) {
+        // yeah, whatever…
         res.render('markLastPhotoInRoll');
     };
 
