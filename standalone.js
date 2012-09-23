@@ -8,7 +8,9 @@ var fs = require('fs'),
     config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json')));
 
 
-config.logger = new Logger();
+config.logger = new Logger({
+    //level: 8 // log-level (8=debug)
+});
 
 var eyefiServer = eyefi.createServer(config).start();
 
