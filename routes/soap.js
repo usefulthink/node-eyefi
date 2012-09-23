@@ -1,9 +1,5 @@
-var qs = require("querystring"),
-    xml2js = require("xml2js"),
-    config = require("../lib/config"),
+var config = require("../lib/config"),
     crypto = require("crypto");
-
-var parser = new xml2js.Parser(xml2js.defaults["0.1"]);
 
 // the salt for the md5-authentication, could very well be any hex-string
 // of this length – but security is not our concern as long as it's broken.
@@ -18,10 +14,9 @@ function md5HexDigest(data) {
     return hash.digest("hex");
 }
 
-exports.handleSoapRequest = function (req, res) {
-    // implements the simple challenge/response authentication used by the eye-fi cards
-    var renderStartSessionResponse = function (data) {
-        var reqData = data["SOAP-ENV:Body"]["ns1:StartSession"],
+var soapActionHandlers = {
+    'urn:StartSession' : function __startSessionAction(req, res) {
+        var reqData = req.soap.data["SOAP-ENV:Body"]["ns1:StartSession"],
             cardConfig = config.getCardConfig(reqData.macaddress);
 
         if (!cardConfig) {
@@ -38,35 +33,30 @@ exports.handleSoapRequest = function (req, res) {
             "snonce" : SNONCE,
             "transfermodetimestamp" : reqData.transfermodetimestamp
         });
-    };
+    },
 
-    var renderGetPhotoStatusResponse = function (data) {
+    'urn:GetPhotoStatus' : function __getPhotoStatusAction(req, res) {
         // this should obviously reply if the image was already uploaded,
         // but it's not actually required for all this to work
         res.render('getPhotoStatus');
-    };
+    },
 
-    var renderMarkLastPhotoInRollResponse = function (data) {
-        // yeah, whatever…
+    'urn:MarkLastPhotoInRoll' : function __markLastPhotoInRollAction(req, res) {
+        // yeah, whatever. According to http://goo.gl/DmD4b this might be useful when
+        // multiple files are uploaded in parallel.
         res.render('markLastPhotoInRoll');
-    };
-
-    /*
-     * Decide what kind of SOAP request this was.
-     */
-    switch (req.soap.action) {
-        case "urn:StartSession":
-            renderStartSessionResponse(req.soap.data);
-            break;
-        case "urn:GetPhotoStatus":
-            renderGetPhotoStatusResponse(req.soap.data);
-            break;
-        case "urn:MarkLastPhotoInRoll":
-            renderMarkLastPhotoInRollResponse(req.soap.data);
-            break;
-        default:
-            console.log("unknown soap-action: " + req.soap.action);
-            req.end();
-            break;
     }
+};
+
+exports.handleSoapRequest = function __handleSoapRequest(req, res) {
+    var handler = soapActionHandlers[req.soap.action];
+
+    if(!handler) {
+        console.error("unknown soap-action: " + req.soap.action);
+        res.end();
+
+        return;
+    }
+
+    return handler(req, res);
 };
