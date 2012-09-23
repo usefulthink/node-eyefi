@@ -84,7 +84,7 @@ start here:
  - https://github.com/kristofg/rifec - perl, well documented
 
 
-## Acknoledgements
+## Acknowledgements
 
 Inspired by prior work of Sebastian Hoitz and Thomas Schaaf – their project
 (http://goo.gl/HOxO2) gave me some insights and was some kind of starting-point
