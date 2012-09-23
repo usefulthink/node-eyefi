@@ -7,15 +7,14 @@ var fs = require('fs'),
 
     config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json')));
 
-
 config.logger = new Logger({
-    //level: 8 // log-level (8=debug)
+    level: 6
 });
 
 var eyefiServer = eyefi(config).start();
 
-console.log("node-eyefi started and listening");
+config.logger.notice("eyefi-server started and listening");
 
 eyefiServer.on('imageReceived', function(imgData) {
-    config.logger.info('received an image: ' + imgData.filename);
+    config.logger.notice('received an image: ' + imgData.filename);
 });
