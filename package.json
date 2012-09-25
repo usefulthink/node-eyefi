@@ -1,25 +1,33 @@
 {
-    "name": "eyefi",
-    "version": "0.1.1",
-    "description": "integrate image-uploads from eye-fi cards into your application",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "http://github.com/usefulthink/node-eyefi.git"
-    },
-    "homepage": "http://github.com/usefulthink/node-eyefi",
-    "keywords": [ "eye-fi", "eyefi", "image-server", "photography" ],
-    "author": {
-        "name": "usefulthink",
-        "email": "m.schuhfuss@gmail.com",
-        "url": "http://github.com/usefulthink"
-    },
-    "license": "WTFPL",
-    "dependencies": {
-        "express": ">=3.0",
-        "ejs": ">=0.8",
-        "xml2js": ">=0.2",
-        "tar": ">=0.1",
-        "devnull": "*"
-    }
+  "name": "eyefi",
+  "version": "0.1.1",
+  "description": "integrate image-uploads from eye-fi cards into your application",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/usefulthink/node-eyefi.git"
+  },
+  "homepage": "http://github.com/usefulthink/node-eyefi",
+  "keywords": [
+    "eye-fi",
+    "eyefi",
+    "image-server",
+    "photography"
+  ],
+  "author": {
+    "name": "usefulthink",
+    "email": "m.schuhfuss@gmail.com",
+    "url": "http://github.com/usefulthink"
+  },
+  "license": "WTFPL",
+  "dependencies": {
+    "express": ">=3.0",
+    "ejs": ">=0.8",
+    "xml2js": ">=0.2",
+    "tar": ">=0.1",
+    "devnull": "*",
+    "formidable": "~1.0.11",
+    "qs": "~0.5.1",
+    "bytes": "~0.1.0"
+  }
 }
