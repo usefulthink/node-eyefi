@@ -1,6 +1,6 @@
 {
   "name": "eyefi",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "integrate image-uploads from eye-fi cards into your application",
   "main": "index.js",
   "repository": {
