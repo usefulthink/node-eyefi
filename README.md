@@ -44,9 +44,11 @@ now take a photo to see if it's working.
 
 ## Integrate into your own project
 
-Integration is possible, but currently not very feature-rich.
+Integration is possible, and not really complicated.
 It basically just works (or maybe doesn't) and emits an
 `imageReceived`-Event whenever the upload of an image is completed.
+Additionally, you may listen for `uploadProgress`-events which are fired during
+the file-upload.
 
 By default, logging will print error-messages to the console. This is
 something I'm working on. (If you want to customize logging, the only way
@@ -65,6 +67,10 @@ for now is to create your own logger-instance (see standalone.js))
     
     eyefiServer.on('imageReceived', function(data) {
         console.log('received an image: ' + data.filename);
+    });
+    
+    eyefiServer.on('uploadProgress', function(progress) {
+        console.log( (100*progress.received/progress.expected).toFixed(2) + '% complete');
     });
 
 
